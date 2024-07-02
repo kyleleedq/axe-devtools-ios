@@ -16,10 +16,6 @@ jobs:
             with:
                 ref: main
 
-          - name: Create new branch
-            run: |
-                git checkout -b update-release
-
           - name: Remove existing framework and docs
             run: |
                 rm -rf axeDevToolsXCUI.*
@@ -36,5 +32,5 @@ jobs:
                 git config user.email "mobileteam@deque.com"
                 git add axeDevToolsXCUI.*
                 git commit -m "chore: release ${{ github.event.inputs.releaseVersion }}"
-                git push
+                git push origin main
     
