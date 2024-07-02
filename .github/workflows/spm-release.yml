@@ -1,6 +1,10 @@
 name: Release to SPM
 on:
     workflow_dispatch:
+        inputs:
+            releaseVersion:
+                description: 'The version/tag of the release'
+                required: true
 
 jobs:
     release:
@@ -14,8 +18,15 @@ jobs:
 
           - name: Create new branch
             run: |
-              git checkout -b update-release
+                git checkout -b update-release
 
           - name: Check current branch
             run: |
-              git rev-parse --abbrev-ref HEAD
+                git rev-parse --abbrev-ref HEAD
+
+          - name: Download latest XCUI framework & DocC archive
+            env:
+                DQ_AGORA_KEY: ${{ secrets.DQ_AGORA_KEY }}
+            run: |
+                sh .github/scripts/DownloadLatestFrameworkAndDocs.sh ${{ github.event.inputs.releaseVersion }}
+
