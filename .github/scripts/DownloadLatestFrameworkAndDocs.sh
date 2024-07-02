@@ -1,9 +1,22 @@
-
 VERSION_NUM=$1
+
 BASE_URL="https://agora.dequecloud.com/artifactory/Attest-iOS/axeDevToolsXCUI"
+FRAMEWORK_FILENAME="axeDevToolsXCUI.xcframework-${VERSION_NUM}"
+DOCS_FILENAME="axeDevToolsXCUI.doccarchive-${VERSION_NUM}"
 
-FRAMEWORK_URL="${BASE_URL}/frameworks/axeDevToolsXCUI.xcframework-${VERSION_NUM}.zip"
-DOCS_URL="${BASE_URL}/docs/axeDevToolsXCUI.doccarchive-${VERSION_NUM}.zip"
+FRAMEWORK_URL="${BASE_URL}/frameworks/${FRAMEWORK_FILENAME}.zip"
+DOCS_URL="${BASE_URL}/docs/${DOCS_FILENAME}.zip"
 
-echo $FRAMEWORK_URL
-echo $DOCS_URL
+OUTPUT_DIR="/tmp/unzipped"
+LOCAL_ZIPPED_FRAMEWORK_URL="${OUTPUT_DIR}/${FRAMEWORK_FILENAME}.zip"
+LOCAL_ZIPPED_DOCS_URL="${OUTPUT_DIR}/${DOCS_FILENAME}.zip"
+
+mkdir -p $OUTPUT_DIR
+
+curl -H "X-JFrog-Art-Api:${DQ_AGORA_KEY}" \ 
+    -o $LOCAL_ZIPPED_FRAMEWORK_URL \ 
+    $FRAMEWORK_URL
+
+unzip $LOCAL_ZIPPED_FRAMEWORK_URL -d $OUTPUT_DIR
+
+ls $OUTPUT_DIR
