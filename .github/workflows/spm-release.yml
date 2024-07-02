@@ -6,8 +6,5 @@ on:
 jobs:
     release:
         runs-on: ubuntu-latest
-
-    steps:
-        - name: Checkout main branch
-        run: |
-        git checkout main
+        steps:
+          - run: git checkout main
