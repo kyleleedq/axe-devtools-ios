@@ -20,13 +20,14 @@ jobs:
             run: |
                 git checkout -b update-release
 
-          - name: Check current branch
-            run: |
-                git rev-parse --abbrev-ref HEAD
-
           - name: Download latest XCUI framework & DocC archive
             env:
                 DQ_AGORA_KEY: ${{ secrets.DQ_AGORA_KEY }}
             run: |
                 sh .github/scripts/DownloadLatestFrameworkAndDocs.sh ${{ github.event.inputs.releaseVersion }}
+
+          - name: Replace existing XCUI framework & DocC archive
+            run: |
+                ls .
+                pwd
 
