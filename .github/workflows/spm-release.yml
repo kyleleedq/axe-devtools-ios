@@ -1,0 +1,13 @@
+name: Release to SPM
+
+on:
+    workflow_dispatch:
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout main branch
+        run: |
+        git checkout main
