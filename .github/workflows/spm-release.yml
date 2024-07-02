@@ -26,8 +26,7 @@ jobs:
             run: |
                 sh .github/scripts/DownloadLatestFrameworkAndDocs.sh ${{ github.event.inputs.releaseVersion }}
 
-          - name: Replace existing XCUI framework & DocC archive
+          - name: Check for changes
             run: |
-                ls .
-                pwd
+                git diff
 

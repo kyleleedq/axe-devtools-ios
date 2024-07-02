@@ -13,12 +13,12 @@ LOCAL_ZIPPED_DOCS_URL="${OUTPUT_DIR}/${DOCS_FILENAME}.zip"
 
 mkdir -p $OUTPUT_DIR
 
-# Download & unzip framework
+# Download framework & docs
 curl -H "X-JFrog-Art-Api:${DQ_AGORA_KEY}" -o $LOCAL_ZIPPED_FRAMEWORK_URL $FRAMEWORK_URL
-unzip -o $LOCAL_ZIPPED_FRAMEWORK_URL -d $OUTPUT_DIR
-
-# Download & unzip docs
 curl -H "X-JFrog-Art-Api:${DQ_AGORA_KEY}" -o $LOCAL_ZIPPED_DOCS_URL $DOCS_URL
-unzip -o $LOCAL_ZIPPED_DOCS_URL -d $OUTPUT_DIR
 
-ls $OUTPUT_DIR
+# Unzip framework & docs
+unzip -o $LOCAL_ZIPPED_FRAMEWORK_URL -d .
+unzip -o $LOCAL_ZIPPED_DOCS_URL -d .
+
+ls -al .
