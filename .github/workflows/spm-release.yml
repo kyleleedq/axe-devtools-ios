@@ -7,7 +7,7 @@ on:
                 required: true
 
 jobs:
-    release:
+    update_spm:
         runs-on: ubuntu-latest
         steps:
 
@@ -22,12 +22,17 @@ jobs:
 
           - name: Remove existing framework and docs
             run: |
-                ls -al .
                 rm -rf axeDevToolsXCUI.*
-                ls -al .
 
           - name: Download latest XCUI framework & DocC archive
             env:
                 DQ_AGORA_KEY: ${{ secrets.DQ_AGORA_KEY }}
             run: |
                 sh .github/scripts/DownloadLatestFrameworkAndDocs.sh ${{ github.event.inputs.releaseVersion }}
+
+          - name: Commit changes
+            run: |
+                git add axeDevToolsXCUI.*
+                git commit -m "chore: release ${{ github.event.inputs.releaseVersion }}"
+                git push
+    
