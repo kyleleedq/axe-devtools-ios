@@ -32,6 +32,8 @@ jobs:
 
           - name: Commit changes
             run: |
+                git config user.name "deque-mobileteam"
+                git config user.email "mobileteam@deque.com"
                 git add axeDevToolsXCUI.*
                 git commit -m "chore: release ${{ github.event.inputs.releaseVersion }}"
                 git push
