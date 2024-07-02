@@ -1,14 +1,12 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
 // swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name axeDevToolsXCUI
-// swift-module-flags-ignorable: -enable-bare-slash-regex
 import CoreGraphics
 import Foundation
 import Swift
 import UIKit
 import Vision
 import _Concurrency
-import _StringProcessing
 import zlib
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class AxeImage : ObjectiveC.NSObject {
   @objc final public let base64png: Swift.String
@@ -25,7 +23,6 @@ import zlib
   public var summary: Swift.String {
     get
   }
-  public var passingDescription: Swift.String?
   public var standard: axeDevToolsXCUI.AxeStandard {
     get
   }
@@ -43,15 +40,8 @@ import zlib
     get
   }
 }
-extension axeDevToolsXCUI.AxeDevTools {
-  @available(*, deprecated, message: "The organization parameter of this method will be removed in a future release; please refer to our docs for more information.")
-  @objc public static func login(withUsername username: Swift.String, andPassword password: Swift.String, toServer url: Swift.String = "", organization: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevTools
-  @objc public static func login(withUsername username: Swift.String, andPassword password: Swift.String, toServer url: Swift.String = "") throws -> axeDevToolsXCUI.AxeDevTools
-  @available(*, deprecated, message: "The organization parameter of this method will be removed in a future release; please refer to our docs for more information.")
-  @objc public static func login(withAPIKey apiKey: Swift.String, toServer url: Swift.String = "", organization: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevTools
-  @objc public static func login(withAPIKey apiKey: Swift.String, toServer url: Swift.String = "") throws -> axeDevToolsXCUI.AxeDevTools
-  @available(*, deprecated, message: "This method will be removed in our July/August release; please use login(withUsername, andPassword, toServer) instead")
-  @objc public static func login(withAccessToken accessToken: axeDevToolsXCUI.AccessToken, toServer url: Swift.String = "", orgId: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevTools
+@_hasMissingDesignatedInitializers @objc public class UsageServiceBody : ObjectiveC.NSObject {
+  @objc deinit
 }
 @objc public enum AxeRole : Swift.Int {
   case textElement
@@ -81,9 +71,9 @@ extension axeDevToolsXCUI.AxeDevTools {
   @objc override dynamic public var description: Swift.String {
     @objc get
   }
-  required public init(from decoder: any Swift.Decoder) throws
+  required public init(from decoder: Swift.Decoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc deinit
 }
 @objc public enum AxeStatus : Swift.Int {
@@ -128,13 +118,13 @@ extension axeDevToolsXCUI.AxeDevTools {
   @objc override dynamic public var description: Swift.String {
     @objc get
   }
-  required public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
   @discardableResult
   @objc public func runOnSelfAndDescendants(_ function: (axeDevToolsXCUI.AxeView) -> axeDevToolsXCUI.RunStatus) -> axeDevToolsXCUI.RunStatus
-  public func getOrError(prop: axeDevToolsXCUI.AxeProps.Name) throws -> (any Swift.Decodable & Swift.Encodable)?
-  public func get(prop: axeDevToolsXCUI.AxeProps.Name) -> (any Swift.Decodable & Swift.Encodable)?
+  public func getOrError(prop: axeDevToolsXCUI.AxeProps.Name) throws -> Swift.Codable?
+  public func get(prop: axeDevToolsXCUI.AxeProps.Name) -> Swift.Codable?
   public func getOrError<T>(prop name: axeDevToolsXCUI.AxeProps.Name, withType t: T.Type) throws -> T where T : Swift.Decodable, T : Swift.Encodable
   public func get<T>(prop name: axeDevToolsXCUI.AxeProps.Name, withType t: T.Type) -> T? where T : Swift.Decodable, T : Swift.Encodable
   @objc public func isPropTypeOrChild(ofProp propName: axeDevToolsXCUI.AxeProps.Name) -> Swift.Bool
@@ -151,12 +141,10 @@ extension axeDevToolsXCUI.AxeDevTools {
     get
   }
   public init(impact: axeDevToolsXCUI.AxeImpact, standard: axeDevToolsXCUI.AxeStandard, summary: Swift.String, experimental: Swift.Bool = false)
-  required public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
   @objc deinit
-}
-extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {
 }
 @_hasMissingDesignatedInitializers @objc public class AxeDevToolsResultKey : ObjectiveC.NSObject, Swift.Codable {
   @objc final public let packageName: Swift.String
@@ -171,8 +159,8 @@ extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {
   @objc public init?(fabTitle: Swift.String)
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
   @objc deinit
-  public func encode(to encoder: any Swift.Encoder) throws
-  required public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
 }
 @_inheritsConvenienceInitializers @objc final public class AxeConf : ObjectiveC.NSObject, Swift.Codable {
   final public var customRules: Swift.Set<axeDevToolsXCUI.AxeRule> {
@@ -187,8 +175,8 @@ extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {
     @objc get
   }
   @objc override dynamic public init()
-  required public init(from decoder: any Swift.Decoder) throws
-  final public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+  final public func encode(to encoder: Swift.Encoder) throws
   @objc final public func ignore(rule: Swift.String, _ shouldIgnore: Swift.Bool = true)
   @objc final public func ignore(rules: [Swift.String], _ shouldIgnore: Swift.Bool = true)
   @objc final public func ignore(rulesFor: [Swift.String : Swift.Set<Swift.String>])
@@ -221,8 +209,8 @@ extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {
   @objc override dynamic public var description: Swift.String {
     @objc get
   }
-  required public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
   @objc deinit
 }
@@ -243,17 +231,17 @@ extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {
   @objc override dynamic public var hash: Swift.Int {
     @objc get
   }
-  required public init(from decoder: any Swift.Decoder) throws
+  required public init(from decoder: Swift.Decoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc deinit
 }
 @objc public enum AxeOrientation : Swift.UInt, Swift.Codable {
   case all = 0
   case portrait = 1
   case landscape = 2
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   public init?(rawValue: Swift.UInt)
   public typealias AllCases = [axeDevToolsXCUI.AxeOrientation]
   public typealias RawValue = Swift.UInt
@@ -372,14 +360,14 @@ extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {
   }
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
   @objc deinit
-  public func encode(to encoder: any Swift.Encoder) throws
-  required public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class AxeBounds : axeDevToolsXCUI.AxeRect {
   @objc override final public var description: Swift.String {
     @objc get
   }
-  required public init(from decoder: any Swift.Decoder) throws
+  required public init(from decoder: Swift.Decoder) throws
   @objc deinit
 }
 extension Swift.String {
@@ -392,8 +380,8 @@ extension Swift.String {
   @objc override dynamic public var description: Swift.String {
     @objc get
   }
-  convenience required public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  convenience required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
   @objc deinit
 }
@@ -402,9 +390,9 @@ extension Swift.String {
   @objc final public let axeDevice: axeDevToolsXCUI.AxeDevice
   @objc final public let screenshot: axeDevToolsXCUI.AxeImage
   @objc public var axeMetaData: axeDevToolsXCUI.AxeMetaData
-  required public init(from decoder: any Swift.Decoder) throws
+  required public init(from decoder: Swift.Decoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc deinit
 }
 @objc public enum AxeStandard : Swift.Int {
@@ -434,9 +422,9 @@ extension Swift.String {
   @objc override dynamic public var hash: Swift.Int {
     @objc get
   }
-  required public init(from decoder: any Swift.Decoder) throws
+  required public init(from decoder: Swift.Decoder) throws
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   @objc deinit
 }
 @_inheritsConvenienceInitializers @objc final public class AxeProps : ObjectiveC.NSObject, Swift.Codable {
@@ -445,15 +433,15 @@ extension Swift.String {
     @objc get
   }
   @objc override dynamic public init()
-  required public init(from decoder: any Swift.Decoder) throws
-  final public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: Swift.Decoder) throws
+  final public func encode(to encoder: Swift.Encoder) throws
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
-  final public func get(_ name: axeDevToolsXCUI.AxeProps.Name) -> (any Swift.Decodable & Swift.Encodable)?
-  final public func getOrError(_ name: axeDevToolsXCUI.AxeProps.Name) throws -> (any Swift.Decodable & Swift.Encodable)?
+  final public func get(_ name: axeDevToolsXCUI.AxeProps.Name) -> Swift.Codable?
+  final public func getOrError(_ name: axeDevToolsXCUI.AxeProps.Name) throws -> Swift.Codable?
   final public func get<T>(_ name: axeDevToolsXCUI.AxeProps.Name, withType objType: T.Type) -> T? where T : Swift.Decodable, T : Swift.Encodable
   final public func getOrError<T>(_ name: axeDevToolsXCUI.AxeProps.Name, withType objType: T.Type) throws -> T where T : Swift.Decodable, T : Swift.Encodable
-  final public func add(_ props: [axeDevToolsXCUI.AxeProps.Name : (any Swift.Decodable & Swift.Encodable)?])
-  final public func add(_ propName: axeDevToolsXCUI.AxeProps.Name, _ prop: (any Swift.Decodable & Swift.Encodable)?)
+  final public func add(_ props: [axeDevToolsXCUI.AxeProps.Name : Swift.Codable?])
+  final public func add(_ propName: axeDevToolsXCUI.AxeProps.Name, _ prop: Swift.Codable?)
   final public func remove(_ propName: axeDevToolsXCUI.AxeProps.Name)
   @objc deinit
 }
@@ -482,7 +470,6 @@ extension Swift.String {
   public static let supportedOrientations: Swift.String
   public static let accessibilityActivationPoint: Swift.String
   public static let actions: Swift.String
-  public static let keyboardOnScreen: Swift.String
 }
 @_hasMissingDesignatedInitializers @objc final public class AxeDevTools : ObjectiveC.NSObject {
   @objc final public var configuration: axeDevToolsXCUI.AxeConf {
@@ -493,6 +480,10 @@ extension Swift.String {
     @objc get
     @objc set
   }
+  @objc public static func login(withUsername username: Swift.String, andPassword password: Swift.String, toServer url: Swift.String = "", organization: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevTools
+  @objc public static func login(withAPIKey apiKey: Swift.String, toServer url: Swift.String = "", organization: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevTools
+  @available(*, deprecated, message: "This will be removed in our July/August release; please use login(withUsername, andPassword, toServer) instead")
+  @objc public static func login(withAccessToken accessToken: axeDevToolsXCUI.AccessToken, toServer url: Swift.String = "", orgId: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevTools
   @objc final public func getResult(_ resultKey: axeDevToolsXCUI.AxeDevToolsResultKey) throws -> axeDevToolsXCUI.AxeResult
   @discardableResult
   @objc final public func postResult(_ result: axeDevToolsXCUI.AxeResult, withTags tags: [Swift.String] = [], withScanName scanName: Swift.String? = nil) throws -> axeDevToolsXCUI.AxeDevToolsResultKey
@@ -537,8 +528,8 @@ extension Swift.String {
   @objc public static let tabBar: axeDevToolsXCUI.AxeTraits
   @objc public static let updatesFrequently: axeDevToolsXCUI.AxeTraits
   @objc public func toString() -> Swift.String
-  required convenience public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  required convenience public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
   public typealias ArrayLiteralElement = axeDevToolsXCUI.AxeTraits
   public typealias Element = axeDevToolsXCUI.AxeTraits
   public typealias RawValue = Swift.UInt64
@@ -576,6 +567,7 @@ extension axeDevToolsXCUI.AxeStatus : Swift.Equatable {}
 extension axeDevToolsXCUI.AxeElementType : Swift.CaseIterable {}
 extension axeDevToolsXCUI.AxeElementType : Swift.RawRepresentable {}
 extension axeDevToolsXCUI.AxeElementType : Swift.Hashable {}
+extension axeDevToolsXCUI.AxeElementType : Swift.Equatable {}
 extension axeDevToolsXCUI.RunStatus : Swift.Equatable {}
 extension axeDevToolsXCUI.RunStatus : Swift.Hashable {}
 extension axeDevToolsXCUI.RunStatus : Swift.RawRepresentable {}
