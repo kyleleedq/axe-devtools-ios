@@ -33,4 +33,15 @@ jobs:
                 git add axeDevToolsXCUI.*
                 git commit -m "chore: release ${{ github.event.inputs.releaseVersion }}"
                 git push origin main
+
+          - name: Tag release
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                tag: ${{ github.event.inputs.releaseVersion }}
+            run: |
+                gh release create "$tag" \ 
+                    --repo="$GITHUB_REPOSITORY"
+                    --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \ 
+                    --generate-notes
+
     
