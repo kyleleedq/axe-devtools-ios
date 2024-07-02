@@ -34,12 +34,18 @@ jobs:
                 git commit -m "chore: release ${{ github.event.inputs.releaseVersion }}"
                 git push origin main
 
-          - name: Tag release
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                tag: ${{ github.ref_name }}
+          - name: Create and push tag
             run: |
-                gh release create $tag --title="$tag" --generate-notes
-                gh release upload $tag
+                git tag -a ${{ github.event.inputs.releaseVersion }} -m "Release ${{ github.event.inputs.releaseVersion }}"
+                git push origin ${{ github.event.inputs.releaseVersion }}
+
+          - name: Create GitHub release
+            uses: softprops/action-gh-release@v2
+            with:
+                tag_name: ${{ github.event.inputs.releaseVersion }}
+                release_name: ${{ github.event.inputs.releaseVersion }}
+                generate_release_notes: true
+                draft: false
+                prerelease: false
 
     
