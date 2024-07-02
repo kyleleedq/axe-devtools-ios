@@ -37,7 +37,7 @@ jobs:
           - name: Create and push tag
             run: |
                 git tag -a ${{ github.event.inputs.releaseVersion }} -m "Release ${{ github.event.inputs.releaseVersion }}"
-                git push origin ${{ github.event.inputs.releaseVersion }}
+                git push origin tag ${{ github.event.inputs.releaseVersion }}
 
           - name: Create GitHub release
             uses: softprops/action-gh-release@v2
